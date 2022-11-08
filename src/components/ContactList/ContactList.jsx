@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import deleteContact from '../../reduxe/contacts/contactsSlice.js';
+import { deleteContactsData } from '../../reduxe/contacts/contactsOperations';
 import { getFilteredContacts } from '../../reduxe/selectors';
 import {ItemName, ContactBtn} from './ContactList.styled';
 
@@ -11,7 +11,7 @@ const ContactList = () => {
     const dispatch = useDispatch();
 
     const onDeleteUsers = id => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContactsData(id));
   };
 
 

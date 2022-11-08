@@ -4,8 +4,6 @@ import {
   addContactsData,
   deleteContactsData
 } from '../contacts/contactsOperations';
-import { Status } from 'config/config';
-
 
 const initialState = {
   items: [],
@@ -18,34 +16,38 @@ const contactsSlice = createSlice({
   initialState,
   extraReducers: {
     [fetchContactsData.pending](state) {
-      state.status = Status.loading;
+      state.isLoading = true;
     },
     [fetchContactsData.fulfilled](state, action) {
-      state.status = Status.success;
+      state.isLoading = false;
+      state.error = null;
       state.items = [...action.payload];
     },
-    [fetchContactsData.rejected](state) {
-      state.status = Status.error;
+    [fetchContactsData.rejected](state, action) {
+      state.isLoading = false;
+      // state.error = action.payload;
     },
     [addContactsData.pending](state) {
-      state.status = Status.loading;
+      state.isLoading = true;
     },
     [addContactsData.fulfilled](state, action) {
-      // state.status = Status.success;
+      state.isLoading = false;
+      state.error = null;
       state.items = [...state.items, action.payload];
     },
-    [addContactsData.rejected](state) {
-      state.status = Status.error;
+    [addContactsData.rejected](state, action) {
+      state.isLoading = false;
+      // state.error = action.payload;
     },
     [deleteContactsData.pending](state) {
-      state.status = Status.loading;
+      state.isLoading = true;
     },
     [deleteContactsData.fulfilled](state, action) {
-      // state.status = Status.success;
+      state.isLoading = false;
       state.items = state.items.filter(item => item.id !== action.payload.id);
     },
     [deleteContactsData.rejected](state) {
-      state.status = Status.error;
+      state.isLoading = false;
     },
   },
   // reducers: {

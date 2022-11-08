@@ -19,7 +19,12 @@ const ContactForm = () => {
   const contacts = useSelector(state => state.contacts.items);
 
   const handleChange = event => {
+    
     const { value, name } = event.target;
+     
+    // if (contacts.some(contact => contact.name === name)) {
+    //   return alert(`${name} is already in contacts`);
+    // }
 
     switch (name) {
       case 'name':
@@ -33,19 +38,20 @@ const ContactForm = () => {
     }
   };
   
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-  //   dispatch(addContact({ name, number, id: nanoid() }));
-  //   setName('');
-  //   setNumber('');
-  // };
-  
-  const handleSubmit = (name, number) => {
+  const handleSubmit = event => {
+    event.preventDefault();
     if (contacts.some(contact => contact.name === name)) {
       return alert(`${name} is already in contacts`);
     }
     dispatch(addContactsData({ name, number, id: nanoid() }));
+    setName('');
+    setNumber('');
   };
+  
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   dispatch(addContactsData({ name, number, id: nanoid() }));
+  // };
 
   return (
     <form onSubmit={handleSubmit}>
