@@ -11,7 +11,7 @@ const ContactList = () => {
     const dispatch = useDispatch();
 
     const onDeleteUsers = id => {
-    dispatch(deleteContactsData(id));
+   dispatch(deleteContactsData(id));
   };
 
 
