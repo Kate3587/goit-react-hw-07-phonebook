@@ -1,12 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-
 import { addContactsData } from '../../reduxe/contacts/contactsOperations';
 
 import { nanoid } from 'nanoid';
-
-// import { addContact } from '../../reduxe/contacts/contactsSlice.js';
 import {PhoneForm, FormLabel, FormInput, FormBtn} from './ContactForm.styled'
 
 const ContactForm = () => {
@@ -21,10 +18,6 @@ const ContactForm = () => {
   const handleChange = event => {
     
     const { value, name } = event.target;
-     
-    // if (contacts.some(contact => contact.name === name)) {
-    //   return alert(`${name} is already in contacts`);
-    // }
 
     switch (name) {
       case 'name':
@@ -48,10 +41,6 @@ const ContactForm = () => {
     setNumber('');
   };
   
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   dispatch(addContactsData({ name, number, id: nanoid() }));
-  // };
 
   return (
     <form onSubmit={handleSubmit}>

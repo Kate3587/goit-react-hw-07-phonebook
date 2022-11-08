@@ -25,7 +25,6 @@ const contactsSlice = createSlice({
     },
     [fetchContactsData.rejected](state, action) {
       state.isLoading = false;
-      // state.error = action.payload;
     },
     [addContactsData.pending](state) {
       state.isLoading = true;
@@ -37,7 +36,6 @@ const contactsSlice = createSlice({
     },
     [addContactsData.rejected](state, action) {
       state.isLoading = false;
-      // state.error = action.payload;
     },
     [deleteContactsData.pending](state) {
       state.isLoading = true;
@@ -50,23 +48,7 @@ const contactsSlice = createSlice({
       state.isLoading = false;
     },
   },
-  // reducers: {
-  //   addContact: (state, action) => {
-  //     if (
-  //       state.items.some(
-  //         contact =>
-  //           contact.name.toLowerCase() === action.payload.name.toLowerCase()
-  //       )
-  //     ) {
-  //       return alert(`${action.payload.name} is already in contacts`);
-  //     }
-  //     state.items = [...state.items, action.payload];
-  //   },
-  //   deleteContact: (state, action) => {
-  //     state.items = state.items.filter(item => item.id !== action.payload);
-  //   },
-  // },
+
 });
 
-// export const { addContact, deleteContact } = contactsSlice.actions;
 export default contactsSlice.reducer;
