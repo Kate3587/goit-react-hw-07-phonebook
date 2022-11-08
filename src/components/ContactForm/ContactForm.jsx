@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addContactsData } from '../../reduxe/contacts/contactsOperations';
+
 import { nanoid } from 'nanoid';
 
-import { addContact } from '../../reduxe/contacts/contactsSlice.js';
+// import { addContact } from '../../reduxe/contacts/contactsSlice.js';
 import {PhoneForm, FormLabel, FormInput, FormBtn} from './ContactForm.styled'
 
 const ContactForm = () => {
@@ -12,6 +15,8 @@ const ContactForm = () => {
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const contacts = useSelector(state => state.contacts.items);
 
   const handleChange = event => {
     const { value, name } = event.target;
@@ -28,13 +33,20 @@ const ContactForm = () => {
     }
   };
   
-  const handleSubmit = event => {
-    event.preventDefault();
-    dispatch(addContact({ name, number, id: nanoid() }));
-    setName('');
-    setNumber('');
-  };
+  // const handleSubmit = event => {
+  //   event.preventDefault();
+  //   dispatch(addContact({ name, number, id: nanoid() }));
+  //   setName('');
+  //   setNumber('');
+  // };
   
+  const handleSubmit = (name, number) => {
+    if (contacts.some(contact => contact.name === name)) {
+      return alert(`${name} is already in contacts`);
+    }
+    dispatch(addContactsData({ name, number, id: nanoid() }));
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <PhoneForm>
